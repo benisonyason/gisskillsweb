@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Helmet } from 'react-helmet-async';
 
 export default function ThematicScreen() {
