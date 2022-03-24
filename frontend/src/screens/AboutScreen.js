@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function AboutScreen() {
   return (
