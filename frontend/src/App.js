@@ -68,7 +68,7 @@ function App() {
               <i className="fa fa-home"></i>
             </Link>
             <Link to="/mymap">
-              <i className="fa fa-map"></i>
+              Maps
             </Link>
             <Link to="/cart">
               <i className="fa fa-download"></i>

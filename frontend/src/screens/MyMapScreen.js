@@ -1,122 +1,173 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  LoadScript,
-  GoogleMap,
-  StandaloneSearchBox,
-  Marker,
-} from '@react-google-maps/api';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { listProducts } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
-import Axios from 'axios';
-import { USER_ADDRESS_MAP_CONFIRM } from '../constants/userConstants';
-import { useDispatch } from 'react-redux';
+import MessageBox from '../components/MessageBox';
+import Product from '../components/Product';
+import { Helmet } from 'react-helmet-async';
 
-const libs = ['places'];
-const defaultLocation = { lat: 9.07, lng: 7.4 };
-
-export default function MyMapScreen(props) {
-  const [googleApiKey, setGoogleApiKey] = useState('');
-  const [center, setCenter] = useState(defaultLocation);
-  const [location, setLocation] = useState(center);
-
-  const mapRef = useRef(null);
-  const placeRef = useRef(null);
-  const markerRef = useRef(null);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { data } = await Axios('/api/config/google');
-      setGoogleApiKey(data);
-      getUserCurrentLocation();
-    };
-    fetch();
-  }, []);
-
-  const onLoad = (map) => {
-    mapRef.current = map;
-  };
-
-  const onMarkerLoad = (marker) => {
-    markerRef.current = marker;
-  };
-  const onLoadPlaces = (place) => {
-    placeRef.current = place;
-  };
-  const onIdle = () => {
-    setLocation({
-      lat: mapRef.current.center.lat(),
-      lng: mapRef.current.center.lng(),
-    });
-  };
-  const onPlacesChanged = () => {
-    const place = placeRef.current.getPlaces()[0].geometry.location;
-    setCenter({ lat: place.lat(), lng: place.lng() });
-    setLocation({ lat: place.lat(), lng: place.lng() });
-  };
+export default function SearchScreen(props) {
+  const navigate = useNavigate();
+  const {
+    name = 'all',
+    category = 'all',
+    min = 0,
+    max = 0,
+    rating = 0,
+    order = 'newest',
+    pageNumber = 1,
+  } = useParams();
   const dispatch = useDispatch();
-  const onConfirm = () => {
-    const places = placeRef.current.getPlaces();
-    if (places && places.length === 1) {
-      // dispatch select action
-      dispatch({
-        type: USER_ADDRESS_MAP_CONFIRM,
-        payload: {
-          lat: location.lat,
-          lng: location.lng,
-          address: places[0].formatted_address,
-          name: places[0].name,
-          vicinity: places[0].vicinity,
-          googleAddressId: places[0].id,
-        },
-      });
-    } else {
-      alert('Please enter your address');
-    }
-  };
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products, page, pages } = productList;
 
-  const getUserCurrentLocation = () => {
-    if (!navigator.geolocation) {
-      alert('Geolocation is not supported by this browser');
-    } else {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCenter({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-        setLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      });
-    }
-  };
+  const productCategoryList = useSelector((state) => state.productCategoryList);
+  const {
+    loading: loadingCategories,
+    error: errorCategories,
+    categories,
+  } = productCategoryList;
+  useEffect(() => {
+    dispatch(
+      listProducts({
+        pageNumber,
+        name: name !== 'all' ? name : '',
+        category: category !== 'all' ? category : '',
+        min,
+        max,
+        rating,
+        order,
+      })
+    );
+  }, [category, dispatch, max, min, name, order, rating, pageNumber]);
 
-  return googleApiKey ? (
-    <div className="full-container">
-      <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
-        <GoogleMap
-          id="smaple-map"
-          mapContainerStyle={{ height: '100%', width: '100%' }}
-          center={center}
-          zoom={15}
-          onLoad={onLoad}
-          onIdle={onIdle}
-        >
-          <StandaloneSearchBox
-            onLoad={onLoadPlaces}
-            onPlacesChanged={onPlacesChanged}
+  const getFilterUrl = (filter) => {
+    const filterPage = filter.page || pageNumber;
+    const filterCategory = filter.category || category;
+    const filterName = filter.name || name;
+    const filterRating = filter.rating || rating;
+    const sortOrder = filter.order || order;
+    const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
+    const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
+    return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
+  };
+  return (
+    <div class="gallery">
+      <Helmet>
+        <title>Map Store</title>
+        <meta name="description" content="Search and Download Maps for Places" />
+        <link rel="canonical" href="/" />
+      </Helmet>
+      <div>
+        <h4>Filter Location</h4>
+        <div>
+          {loadingCategories ? (
+            <LoadingBox></LoadingBox>
+          ) : errorCategories ? (
+            <MessageBox variant="danger">{errorCategories}</MessageBox>
+          ) : (
+            <ul className='searchlist'>
+              <li>
+                <Link
+                  className={'all' === category ? 'active' : ''}
+                  to={getFilterUrl({ category: 'all' })}
+                >
+                  All
+                </Link>
+              </li>
+              {categories.map((c) => (
+                <li key={c}>
+                  <Link
+                    className={c === category ? 'active' : ''}
+                    to={getFilterUrl({ category: c })}
+                  >
+                    {c}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+      <div className="row">
+        {loading ? (
+          <LoadingBox></LoadingBox>
+        ) : error ? (
+          <MessageBox variant="danger">{error}</MessageBox>
+        ) : (
+          <div>{products.length} Results</div>
+        )}
+        <div>
+          Sort by{' '}
+          <select
+            value={order}
+            onChange={(e) => {
+              navigate(getFilterUrl({ order: e.target.value }));
+            }}
           >
-            <div className="map-input-box">
-              <input type="text" placeholder="Enter address"></input>
-              <button type="button" className="primary" onClick={onConfirm}>
-                <i className='fa fa-address-book-o'></i>
-              </button>
-            </div>
-          </StandaloneSearchBox>
-          <Marker position={location} onLoad={onMarkerLoad}></Marker>
-        </GoogleMap>
-      </LoadScript>
+            <option value="newest">Newest Arrivals</option>
+            <option value="lowest">Price: Low to High</option>
+            <option value="highest">Price: High to Low</option>
+            <option value="toprated">Avg. Customer Reviews</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="row top">
+        <div className="col-3">
+          {loading ? (
+            <LoadingBox></LoadingBox>
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            <>
+              {products.length === 0 && (
+                <div>
+                  <MessageBox>
+                    <p>Search Not Available... try searching by LGA or state Name</p>
+                  </MessageBox>
+                  <div>
+                    <div className='row center'>
+                      <p>Can't find what you are looking for? Don't worry </p>
+                      <p> Tell us what you want...</p>
+                    </div>
+                    <div className='row center'>
+                      <ol>
+                        <li><Link to="/studyarea"> Customized Study Area Map</Link></li>
+                        <li><Link to="/topography"> Topographic Map</Link></li>
+                        <li><Link to="/geology"> Geology Map</Link></li>
+                        <li><Link to="/soil"> Soil Map</Link></li>
+                        <li><Link to="/administrative"> Administrative Map</Link></li>
+                        <li><Link to="/thematic"> Thematic Map</Link></li>
+                        <li><Link to="/lulc"> Landuse/Landcover Map</Link></li>
+                        <li><Link to="/vegetation"> Vegetation Map</Link></li>
+                      </ol>
+                    </div>
+
+                  </div>
+                </div>
+              )}
+              <div className="row center">
+                {products.map((product) => (
+                  <Product key={product._id} product={product}></Product>
+                ))}
+              </div>
+              <div className="row center pagination">
+                {[...Array(pages).keys()].map((x) => (
+                  <Link
+                    className={x + 1 === page ? 'active' : ''}
+                    key={x + 1}
+                    to={getFilterUrl({ page: x + 1 })}
+                  >
+                    {x + 1}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
-  ) : (
-    <LoadingBox></LoadingBox>
   );
 }

@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
+import Products2 from '../components/Products2';
 import { Helmet } from 'react-helmet-async';
 
 
 export default function SearchScreen(props) {
-  const navigate = useNavigate();
   const {
     name = 'all',
     category = 'all',
@@ -23,12 +22,6 @@ export default function SearchScreen(props) {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
-  const productCategoryList = useSelector((state) => state.productCategoryList);
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
   useEffect(() => {
     dispatch(
       listProducts({
@@ -54,66 +47,12 @@ export default function SearchScreen(props) {
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
-    <div>
+    <div class="gallery">
       <Helmet>
         <title>Map Store</title>
         <meta name="description" content="Search and Download Maps for Places" />
         <link rel="canonical" href="/" />
       </Helmet>
-      <div>
-        <h4>Filter Location</h4>
-        <div>
-          {loadingCategories ? (
-            <LoadingBox></LoadingBox>
-          ) : errorCategories ? (
-            <MessageBox variant="danger">{errorCategories}</MessageBox>
-          ) : (
-            <ul className='searchlist'>
-              <li>
-                <Link
-                  className={'all' === category ? 'active' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                >
-                  All
-                </Link>
-              </li>
-              {categories.map((c) => (
-                <li key={c}>
-                  <Link
-                    className={c === category ? 'active' : ''}
-                    to={getFilterUrl({ category: c })}
-                  >
-                    {c}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-      <div className="row">
-        {loading ? (
-          <LoadingBox></LoadingBox>
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <div>{products.length} Results</div>
-        )}
-        <div>
-          Sort by{' '}
-          <select
-            value={order}
-            onChange={(e) => {
-              navigate(getFilterUrl({ order: e.target.value }));
-            }}
-          >
-            <option value="newest">Newest Arrivals</option>
-            <option value="lowest">Price: Low to High</option>
-            <option value="highest">Price: High to Low</option>
-            <option value="toprated">Avg. Customer Reviews</option>
-          </select>
-        </div>
-      </div>
 
       <div className="row top">
         <div className="col-3">
@@ -123,35 +62,12 @@ export default function SearchScreen(props) {
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
             <>
-              {products.length === 0 && (
-                <div>
-                  <MessageBox>
-                    <p>Search Not Available... try searching by LGA or state Name</p>
-                  </MessageBox>
-                  <div>
-                    <div className='row center'>
-                      <p>Can't find what you are looking for? Don't worry </p>
-                      <p> Tell us what you want...</p>
-                    </div>
-                    <div className='row center'>
-                      <ol>
-                        <li><Link to="/studyarea"> Customized Study Area Map</Link></li>
-                        <li><Link to="/topography"> Topographic Map</Link></li>
-                        <li><Link to="/geology"> Geology Map</Link></li>
-                        <li><Link to="/soil"> Soil Map</Link></li>
-                        <li><Link to="/administrative"> Administrative Map</Link></li>
-                        <li><Link to="/thematic"> Thematic Map</Link></li>
-                        <li><Link to="/lulc"> Landuse/Landcover Map</Link></li>
-                        <li><Link to="/vegetation"> Vegetation Map</Link></li>
-                      </ol>
-                    </div>
-
-                  </div>
-                </div>
-              )}
-              <div className="row center">
+              <div className='Row'>
+                <h1>Recent Updates</h1>
+              </div>
+              <div className='row center'>
                 {products.map((product) => (
-                  <Product key={product._id} product={product}></Product>
+                  <Products2 key={product._id} product={product}></Products2>
                 ))}
               </div>
               <div className="row center pagination">
