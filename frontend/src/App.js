@@ -19,6 +19,9 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SigninScreen from './screens/SigninScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
+import GiScreen from './screens/GisScreen';
+import LearnSpssScreen from './screens/LearnSpssScreen';
+import RlearnScreen from './screens/RlearnScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
@@ -208,6 +211,9 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/gis" element={<PrivateRoute><GiScreen/></PrivateRoute>}></Route>
+            <Route path="/rlearn" element={<PrivateRoute><RlearnScreen/></PrivateRoute>}></Route>
+            <Route path="/learnspss" element={<PrivateRoute><LearnSpssScreen/></PrivateRoute>}></Route>
             <Route
               path="/map"
               element={
@@ -293,6 +299,11 @@ function App() {
 
             <Route path="/" element={<HomeScreen />} exact></Route>
           </Routes>
+          <div className="icon-bar">
+            <a href="https://www.facebook.com/gismapsservices/" className="facebook"><i className="fa fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/company/nigermaps" className="linkedin"><i className="fa fa-linkedin"></i></a>
+            <a href="https://studio.youtube.com/channel/UCC-KUIicsxqsIXpixjp9ieg/playlists" className="youtube"><i className="fa fa-youtube"></i></a>
+          </div>
         </main>
         <footer className="row center">
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}

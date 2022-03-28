@@ -53,7 +53,7 @@ export default function SearchScreen(props) {
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
-    <div class="gallery">
+    <div className="gallery">
       <Helmet>
         <title>Map Store</title>
         <meta name="description" content="Search and Download Maps for Places" />

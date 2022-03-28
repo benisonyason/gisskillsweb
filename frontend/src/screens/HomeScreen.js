@@ -47,9 +47,9 @@ export default function SearchScreen(props) {
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
-    <div class="gallery">
+    <div className="gallery">
       <Helmet>
-        <title>Map Store</title>
+        <title>Home</title>
         <meta name="description" content="Search and Download Maps for Places" />
         <link rel="canonical" href="/" />
       </Helmet>
@@ -62,11 +62,19 @@ export default function SearchScreen(props) {
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
             <>
+              <div className="headrow">
+                <div>
+                  <Link to="/mymap"><span>Search Map</span></Link><br/>
+                 <Link to="/gis"> <span>Learn GIS</span></Link><br/>
+                 <Link to="/rlearn"><span>R Studio </span></Link> <br/>
+                  <Link to="/learnspss"><span>SPSS</span></Link>
+                </div>
+              </div>
               <div className='Row'>
-                <h1>Recent Updates</h1>
+                <h1>Recent Map Updates </h1>
               </div>
               <div className='row center'>
-                {products.map((product) => (
+                {products.slice(0, 10).map((product) => (
                   <Products2 key={product._id} product={product}></Products2>
                 ))}
               </div>

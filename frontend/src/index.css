@@ -541,36 +541,37 @@ html {
 
   @media screen and (max-width: 320px) {
     .responsive {
-        width: 49.99999%;
-        margin: 6px 0;
+        width: 20%;
+        margin: 2px 0;
       }
   }
   @media screen and (max-width: 360px) {
     .responsive {
-        width: 20.99999%;
-        margin: 6px 0;
+        width: 30%;
+        margin: 4px 0;
       }
   }
   
   @media screen and (max-width: 400px) {
     .responsive {
-        width: 20.99999%;
-        margin: 6px 0;
+        width: 40%;
+        margin: 5px 0;
       }
   }
   
   
-  @media screen and (min-width: 600px) {
+  @media screen and (max-width: 500px) {
     .responsive {
-        width: 20.99999%;
-        margin: 6px 0;
+        width: 100%;
+        margin: 1px 0;
+        font-size: 11px;
       }
   }
   
-  @media screen and (min-width: 600px) {
+  @media screen and (max-width: 600px) {
     .responsive {
-        width: 20.99999%;
-        margin: 6px 0;
+        width: 40%;
+        margin: 3px 0;
       }
   }
 
@@ -581,3 +582,63 @@ html {
     display: table;
     clear: both;
   }
+
+  .icon-bar {
+    position: fixed;
+    top: 90%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  
+  .icon-bar a {
+    display: block;
+    text-align: left;
+    padding: 10px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 15px;
+  }
+  
+  .icon-bar a:hover {
+    background-color: #000;
+  }
+  
+  .facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+  .google {
+    background: #dd4b39;
+    color: white;
+  }
+  
+  .linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  
+  .youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .content {
+    margin-left: 75px;
+    font-size: 30px;
+  }
+.headrow{
+    text-align: center;
+    background: rgba(0, 128, 0, 0.3);
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bolder;
+    color: blue;
+    text-shadow: 0 0 2px #ff0000, 0 0 2px #0000ff;
+}
