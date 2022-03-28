@@ -38,9 +38,9 @@ export default function SigninScreen(props) {
       </Helmet>
       <div className='row center'>
         <strong>
-          <h1> Signing with Existing Account or <Link to={`/register?redirect=${redirect}`}>
-            Create your account
-          </Link> to begin</h1>
+          <h1> Log in with existing Account or <Link to={`/register?redirect=${redirect}`}>
+            Register
+           to begin</Link></h1>
         </strong>
       </div>
 

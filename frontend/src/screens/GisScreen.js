@@ -33,14 +33,14 @@ export default function GiScreen() {
                 <meta name="description" content="Search and Download Maps for Places" />
                 <link rel="canonical" href="/" />
             </Helmet>
-            <div className='row center' style={{ 'fontSize': '30px', 'textAlign': 'center' }}>
-                <div><p>Successfully registered For GIS Basic, Lessons begin in &nbsp;</p></div> <br />
+            <div className='row center' style={{ 'fontSize': '25px', 'textAlign': 'center' }}>
+                <div><p>Thanks for showing interest to learn GIS, Lesson will begin in &nbsp;</p></div> <br />
                 <strong><Countdown
                     date='2022-04-05T01:02:03'
                     renderer={renderer}
                 />
-                    </strong>
-                <div><i>&nbsp;Kindly Check Back</i></div>
+                </strong>
+                <div><i>&nbsp; Training Schedules will be forwarded to your email: {userInfo.email}</i></div>
 
             </div>
 

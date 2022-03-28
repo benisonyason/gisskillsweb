@@ -32,14 +32,14 @@ export default function RlearnScreen() {
                 <meta name="description" content="Learn Basic Analysis with R Studio" />
                 <link rel="canonical" href="/" />
             </Helmet>
-            <div className='row center' style={{ 'fontSize': '30px', 'textAlign': 'center' }}>
-                <div><p>Successfully registered For R Studio Basics, Practical Lesson begin in &nbsp;</p></div> <br />
+            <div className='row center' style={{ 'fontSize': '25px', 'textAlign': 'center' }}>
+                <div><p>Thanks for showing interest to learn R Studio Basics, Practical Lesson begin in &nbsp;</p></div> <br />
                 <strong><Countdown
                     date='2022-04-15T01:02:03'
                     renderer={renderer}
                 />
-                    </strong>
-                <div><i>&nbsp;Kindly Check Back</i></div>
+                </strong>
+                <div><i>&nbsp;Training Schedules will be forwarded to your email: {userInfo.email}</i></div>
             </div>
 
         </div>

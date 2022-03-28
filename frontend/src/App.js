@@ -70,9 +70,6 @@ function App() {
             <Link to="/">
               <i className="fa fa-home"></i>
             </Link>
-            <Link to="/mymap">
-              Maps
-            </Link>
             <Link to="/cart">
               <i className="fa fa-download"></i>
               {cartItems.length > 0 && (
