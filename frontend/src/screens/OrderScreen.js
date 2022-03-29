@@ -69,23 +69,6 @@ export default function OrderScreen(props) {
     }
   }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
 
-  const publicKey = "pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac";
-  const email = `${userInfo.email}`;
-  const name = `${userInfo.name}`;
-  const ID = `${orderId}`;
-
-  const componentProps = {
-    email,
-    metadata: {
-      name,
-      ID,
-    },
-    publicKey,
-    channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money', 'bank_transfer'],
-    onSuccess: () =>
-      successPaymentHandler(),
-  }
-
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
@@ -104,7 +87,7 @@ export default function OrderScreen(props) {
         <div>
           <strong>
             <h1>
-              Your download has being prepared and will cost <del>&#8358;</del>{order.itemsPrice} <PaystackButton text="Pay Now to begin download" className="primary" {...componentProps} amount={order.totalPrice * 100} /> <br />
+              Your download has being prepared and will cost <del>&#8358;</del>{order.itemsPrice}<br />
             </h1>
           </strong>
           <i>Your download begin after successful payment and sent to {userInfo.email}</i>
@@ -210,11 +193,11 @@ export default function OrderScreen(props) {
                 )}
                 <li>
                   <div className="row">
-                    <div>Items</div>
+                    <div>Items Price</div>
                     <div><del>&#8358;</del>{order.itemsPrice.toFixed(2)}</div>
                   </div>
                 </li>
-                <li>
+                <li hidden>
                   <div className="row">
                     <div>Vat</div>
                     <div><del>&#8358;</del>{order.taxPrice.toFixed(2)}</div>
@@ -250,8 +233,14 @@ export default function OrderScreen(props) {
                         <div>
                           <strong>Payment Method: </strong><p>Card, Bank Transfer, USSD, QR Code</p>
                         </div>
-                        <PaystackButton text="Pay Now" className="primary block" {...componentProps} amount={order.totalPrice * 100} />
-                      </>
+                        <PaystackButton
+                        className="primary block"
+                        name={userInfo.name}
+                        publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
+                        email={userInfo.email}
+                        text='Pay Now'
+                        amount={order.totalPrice * 100}
+                        onSuccess={successPaymentHandler}/>                      </>
                     )}
                     {userInfo.isAdmin && !order.isDelivered && (
                       <li>

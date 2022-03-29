@@ -101,14 +101,17 @@ function App() {
             {userInfo && userInfo.isSeller && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
+                  Tutorials <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/productlist/seller">Products</Link>
+                    <Link to="/gis">GIS </Link>
                   </li>
                   <li>
-                    <Link to="/orderlist/seller">Orders</Link>
+                    <Link to="/rlearn">R Studio</Link>
+                  </li>
+                  <li>
+                    <Link to="/learnspss">R Studio</Link>
                   </li>
                 </ul>
               </div>
