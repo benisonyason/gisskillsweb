@@ -38,6 +38,9 @@ userRouter.post(
           email: user.email,
           isAdmin: user.isAdmin,
           isSeller: user.isSeller,
+          isRStudent: user.isRStudent,
+          isSPStudent: user.isSPStudent,
+          isGIStudent: user.isGIStudent,
           token: generateToken(user),
         });
         return;
@@ -68,14 +71,14 @@ userRouter.post(
           },
           (error, body) => {
             if (error) {
-              console.log(error);
+              res.status(401).send({ message: 'registered'});
             } else {
-              console.log(body);
+              res.status(401).send({ message: 'registered'});
             }
           }
         );
     } catch (err) {
-      console.log(err);
+      res.status(401).send({ message: 'Unable to send email but you are registered' });;
     }
     res.send({
       _id: createdUser._id,
@@ -83,6 +86,9 @@ userRouter.post(
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
       isSeller: user.isSeller,
+      isRStudent: user.isRStudent,
+      isSPStudent: user.isSPStudent,
+      isGIStudent: user.isGIStudent,
       token: generateToken(createdUser),
     });
   })
@@ -107,6 +113,9 @@ userRouter.put(
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      user.isRStudent =req.body.isRStudent || user.isRStudent;
+      user.isSPStudent = req.body.isSPStudent || user.isSPStudent;
+      user.isGIStudent = req.body.isGIStudent || user.isGIStudent;
       if (user.isSeller) {
         user.seller.name = req.body.sellerName || user.seller.name;
         user.seller.logo = req.body.sellerLogo || user.seller.logo;
@@ -122,6 +131,9 @@ userRouter.put(
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
+        isRStudent: updatedUser.isRStudent,
+        isSPStudent: updatedUser.isSPStudent,
+        isGIStudent: updatedUser.isGIStudent,
         isSeller: user.isSeller,
         token: generateToken(updatedUser),
       });
@@ -146,7 +158,7 @@ userRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.email === 'admin@example.com') {
+      if (user.email === 'gismapsservices@gmail.com') {
         res.status(400).send({ message: 'Can Not Delete Admin User' });
         return;
       }
@@ -169,6 +181,9 @@ userRouter.put(
       user.email = req.body.email || user.email;
       user.isSeller = Boolean(req.body.isSeller);
       user.isAdmin = Boolean(req.body.isAdmin);
+      user.isRStudent = Boolean(req.body.isRStudent);
+      user.isSPStudent = Boolean(req.body.isSPStudent);
+      user.isGIStudent = Boolean(req.body.isGIStudent);
       // user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();
       res.send({ message: 'User Updated', user: updatedUser });

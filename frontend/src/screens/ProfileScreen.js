@@ -117,22 +117,24 @@ export default function ProfileScreen() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>
+
             {user.isSeller && (
               <>
-                <h2>Seller</h2>
+                <h2>Other Details</h2>
                 <div>
-                  <label htmlFor="sellerName">Seller Name</label>
+                  <label htmlFor="sellerName">Othernames</label>
                   <input
                     id="sellerName"
                     type="text"
-                    placeholder="Enter Seller Name"
+                    placeholder="Enter other Names"
                     value={sellerName}
                     onChange={(e) => setSellerName(e.target.value)}
                   ></input>
                 </div>
-                <div>
-                  <label htmlFor="sellerLogo">Seller Logo</label>
+                <div hidden>
+                  <label htmlFor="sellerLogo" hidden>Seller Logo</label>
                   <input
+                  hidden
                     id="sellerLogo"
                     type="text"
                     placeholder="Enter Seller Logo"
@@ -142,13 +144,14 @@ export default function ProfileScreen() {
                 </div>
                 <div>
                   <label htmlFor="sellerDescription">Seller Description</label>
-                  <input
+                  <textarea
                     id="sellerDescription"
+                    rows="3"
                     type="text"
-                    placeholder="Enter Seller Description"
+                    placeholder="About your career"
                     value={sellerDescription}
                     onChange={(e) => setSellerDescription(e.target.value)}
-                  ></input>
+                  ></textarea>
                 </div>
               </>
             )}

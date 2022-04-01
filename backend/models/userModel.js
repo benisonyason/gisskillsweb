@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
     isSeller: { type: Boolean, default: false, required: true },
+    isRStudent: {type: Boolean, default: false, required: true},
+    isSPStudent: {type: Boolean, default: false, required: true},
+    isGIStudent: {type: Boolean, default: false, required: true},
     seller: {
       name: String,
       logo: String,

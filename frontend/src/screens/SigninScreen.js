@@ -32,13 +32,13 @@ export default function SigninScreen(props) {
   return (
     <div>
       <Helmet>
-        <title>Signin to Niger Maps</title>
+        <title> Users Signin/Register to Download resources/start learning</title>
         <meta name="description" content="Signin for an account with Niger Maps: A map store for all places in Nigeria" />
         <link rel="canonical" href="/signin" />
       </Helmet>
       <div className='row center'>
         <strong>
-          <h1> Log in with existing Account or <Link to={`/register?redirect=${redirect}`}>
+          <h1> Signin to continue or <Link to={`/register?redirect=${redirect}`}>
             Register
            to begin</Link></h1>
         </strong>

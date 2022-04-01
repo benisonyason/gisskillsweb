@@ -9,6 +9,9 @@ export const generateToken = (user) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isSeller: user.isSeller,
+      isRStudent: user.isRStudent,
+      isSPStudent: user.isSPStudent,
+      isGIStudent: user.isGIStudent,
     },
     process.env.JWT_SECRET || 'somethingsecret',
     {
@@ -58,6 +61,41 @@ export const isSellerOrAdmin = (req, res, next) => {
     res.status(401).send({ message: 'Invalid Admin/Seller Token' });
   }
 };
+
+export const isRStudent = (req, res, next) => {
+  if (req.user && req.user.isRStudent) {
+    next();
+  } else{
+    res.status(401).send({message: 'Invalid R Students token'});
+  }
+};
+
+export const isSPStudent = (req, res, next) => {
+  if (req.user && req.user.isSPStudent) {
+    next();
+  } else{
+    res.status(401).send({message: 'Invalid SPSS Students token'})
+  }
+};
+
+export const isGIStudent = (req, res, next) => {
+  if (req.user && req.user.isGIStudent) {
+    next();
+  } else{
+    res.status(401).send({message: 'Invalid GIS Students token'});
+  }
+};
+
+export const isRStudentOrGIStudentOrSPStudent = (req, res, next) => {
+  if (req.user && (req.user.isRStudent || req.user.isSPStudent || req.user.isGIStudent)) {
+    next();
+  } else{
+    res.status(401).send({message: 'Invalid RStudents/SPSS/GIS token'});
+  }
+};
+
+
+
 
 export const mailgun = () =>
   mg({

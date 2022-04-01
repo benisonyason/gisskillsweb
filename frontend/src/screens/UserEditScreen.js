@@ -17,6 +17,9 @@ export default function UserEditScreen(props) {
   const [email, setEmail] = useState('');
   const [isSeller, setIsSeller] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isRStudent, setIsRStudent] = useState(false);
+  const [isSPStudent, setIsSPStudent] = useState(false);
+  const [isGIStudent, setIsGIStudent] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
@@ -41,13 +44,16 @@ export default function UserEditScreen(props) {
       setEmail(user.email);
       setIsSeller(user.isSeller);
       setIsAdmin(user.isAdmin);
+      setIsRStudent(user.isRStudent);
+      setIsSPStudent(user.isSPStudent);
+      setIsGIStudent(user.isGIStudent);
     }
   }, [dispatch, navigate, successUpdate, user, userId]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch update user
-    dispatch(updateUser({ _id: userId, name, email, isSeller, isAdmin }));
+    dispatch(updateUser({ _id: userId, name, email, isSeller, isAdmin, isRStudent, isSPStudent, isGIStudent }));
   };
   return (
     <div>
@@ -103,6 +109,34 @@ export default function UserEditScreen(props) {
                 onChange={(e) => setIsAdmin(e.target.checked)}
               ></input>
             </div>
+            <div>
+              <label htmlFor='isRStudent'>isRStudent</label>
+              <input
+                id="isRStudent"
+                type="checkbox"
+                checked={isRStudent}
+                onChange={(e) => setIsRStudent(e.target.checked)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor='isSPStudent'>isSPStudent</label>
+              <input
+                id="isSPStudent"
+                type="checkbox"
+                checked={isSPStudent}
+                onChange={(e) => setIsSPStudent(e.target.checked)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor='isGIStudent'>isGIStudent</label>
+              <input
+                id="isGIStudent"
+                type="checkbox"
+                checked={isGIStudent}
+                onChange={(e) => setIsGIStudent(e.target.checked)}
+              ></input>
+            </div>
+
             <div>
               <button type="submit" className="primary">
                 Update

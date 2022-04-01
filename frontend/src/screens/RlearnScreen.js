@@ -1,18 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Countdown from 'react-countdown';
 import { Helmet } from 'react-helmet-async';
 
 export default function RlearnScreen() {
-    const navigate = useNavigate();
     const userSignin = useSelector((state) => state.userSignin);
 
     const { userInfo } = userSignin;
 
-    if (!userInfo) {
-        navigate('/signin');
-    }
     const Completionist = () => <span>You are good to go!</span>;
 
     // Renderer callback with condition

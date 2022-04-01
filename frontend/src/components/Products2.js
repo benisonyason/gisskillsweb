@@ -6,7 +6,7 @@ export default function Product(props) {
     const { product } = props;
     return (
         <div className="responsive" key={product._id} onContextMenu={(e) => e.preventDefault()}>
-            {product.price > 0 ?(
+            {product.price <= 0 ?(
                        <div className="gallery">
                 <Link to={`/product/${product._id}`}>
                     <img className="medium" src={product.image} alt={product.name}/>

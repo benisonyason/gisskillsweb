@@ -42,6 +42,8 @@ import GeologyScreen from './screens/GeologyScreen';
 import TopographyScreen from './screens/TopographyScreen';
 import CustomStudyareaScreen from './screens/CustomStudyareaScreen';
 import LulcScreen from './screens/LulcScreen';
+import RlearnRoute from './components/RlearnRoute';
+import RregisterScreen from './screens/RregisterScreen';
 
 
 function App() {
@@ -79,7 +81,7 @@ function App() {
             {userInfo ? (
               <div className="dropdown">
                 <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                  <i className='fa fa-user'></i> <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
                   <li>
@@ -151,6 +153,7 @@ function App() {
             <Route path="/about" element={<AboutScreen />}></Route>
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/cart/:id" element={<CartScreen />}></Route>
+            <Route path='/rregister' element={<PrivateRoute><RregisterScreen/></PrivateRoute>}></Route>
             <Route
               path="/product/:id"
               element={<ProductScreen />}
@@ -212,7 +215,13 @@ function App() {
               }
             />
             <Route path="/gis" element={<PrivateRoute><GiScreen/></PrivateRoute>}></Route>
-            <Route path="/rlearn" element={<PrivateRoute><RlearnScreen/></PrivateRoute>}></Route>
+            <Route 
+            path="/rlearn" 
+            element={
+              <RlearnRoute>
+                <RlearnScreen/>
+              </RlearnRoute>}
+            />
             <Route path="/learnspss" element={<PrivateRoute><LearnSpssScreen/></PrivateRoute>}></Route>
             <Route
               path="/map"
