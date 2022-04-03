@@ -31,7 +31,10 @@ import {
   userUpdateProfileReducer,
   userUpdateReducer,
   userSearchdataReducer,
-  searchListReducer,
+  searchListReducer,  
+  contactReducer,
+  contactListReducer,
+
 } from './reducers/userReducers';
 
 const initialState = {
@@ -77,7 +80,10 @@ const reducer = combineReducers({
   productCategoryList: productCategoryListReducer,
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
-  orderSummary: orderSummaryReducer,
+  orderSummary: orderSummaryReducer,  
+  contactList: contactListReducer,
+  contactRegister: contactReducer,
+
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

@@ -46,7 +46,7 @@ export default function GiScreen() {
                     <div style={{ 'fontSize': '25px', 'textAlign': 'center' }}>
                         <strong>
                             <Countdown
-                                date='2022-04-05T01:02:03'
+                                date='2022-04-10T01:02:03'
                                 renderer={renderer}
                             />
                         </strong>

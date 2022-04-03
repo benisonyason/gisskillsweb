@@ -12,6 +12,7 @@ import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import SearchListScreen from './screens/SearchListScreen';
+import ContactedScreen from './screens/ContactedScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -44,7 +45,9 @@ import CustomStudyareaScreen from './screens/CustomStudyareaScreen';
 import LulcScreen from './screens/LulcScreen';
 import RlearnRoute from './components/RlearnRoute';
 import RregisterScreen from './screens/RregisterScreen';
-
+import GisRegisterScreen from './screens/GisRegisterScreen';
+import GisLearnRoute from './components/GisLearnRoute';
+import ContactScreen from './screens/ContactScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -69,7 +72,7 @@ function App() {
             </Link>
           </div>
           <div>
-            <Link to="/">
+            <Link to="/" className="btn btn-danger">
               <i className="fa fa-home"></i>
             </Link>
             <Link to="/cart">
@@ -77,6 +80,9 @@ function App() {
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
+            </Link>
+            <Link to="/contact">
+            <i className="fa fa-address-card" aria-hidden="true"></i>
             </Link>
             {userInfo ? (
               <div className="dropdown">
@@ -100,10 +106,10 @@ function App() {
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
-            {userInfo && userInfo.isSeller && (
+            {userInfo && (
               <div className="dropdown">
                 <Link to="#admin">
-                  Tutorials <i className="fa fa-caret-down"></i>
+                  Learn <i className="fa fa-caret-down"></i>
                 </Link>
                 <ul className="dropdown-content">
                   <li>
@@ -113,7 +119,7 @@ function App() {
                     <Link to="/rlearn">R Studio</Link>
                   </li>
                   <li>
-                    <Link to="/learnspss">R Studio</Link>
+                    <Link to="/learnspss">SPSS</Link>
                   </li>
                 </ul>
               </div>
@@ -142,6 +148,9 @@ function App() {
                   <li>
                     <Link to="/support">Support</Link>
                   </li>
+                  <li>
+                    <Link to="/contacted">Contacts</Link>
+                  </li>
                 </ul>
               </div>
             )}
@@ -153,6 +162,8 @@ function App() {
             <Route path="/about" element={<AboutScreen />}></Route>
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/cart/:id" element={<CartScreen />}></Route>
+            <Route path="/contact" element={<ContactScreen/>}></Route>
+            <Route path="/gisregister" element={<PrivateRoute><GisRegisterScreen/></PrivateRoute>}></Route>
             <Route path='/rregister' element={<PrivateRoute><RregisterScreen/></PrivateRoute>}></Route>
             <Route
               path="/product/:id"
@@ -180,6 +191,7 @@ function App() {
             <Route path="/order/:id" element={<OrderScreen />}></Route>
             <Route path="/mymap" element={<MyMapScreen />}></Route>
             <Route path="/searchlist" element={<SearchListScreen />}></Route>
+            <Route path="/contacted" element={<ContactedScreen/>}></Route>
             <Route
               path="/orderhistory"
               element={<OrderHistoryScreen />}
@@ -214,7 +226,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/gis" element={<PrivateRoute><GiScreen/></PrivateRoute>}></Route>
+            <Route path="/gis" element={<GisLearnRoute><GiScreen/></GisLearnRoute>}></Route>
             <Route 
             path="/rlearn" 
             element={
@@ -316,7 +328,7 @@ function App() {
         </main>
         <footer className="row center">
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
-          <div>Copyright @Nigermaps 2021</div>{' '}
+          <div>Copyright @Nigermaps 2022</div>{' '}
         </footer>
       </div>
     </BrowserRouter>

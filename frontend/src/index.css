@@ -1,5 +1,5 @@
 html {
-    font-size: 60%; /* 16px x 62.5 = 10px = 1rem */
+    font-size: 50%; /* 16px x 62.5 = 10px = 1rem */
     box-sizing: border-box;
   }
   body {
@@ -596,8 +596,8 @@ html {
     text-align: left;
     padding: 10px;
     transition: all 0.3s ease;
-    color: white;
-    font-size: 15px;
+    color: hsl(0, 0%, 100%);
+    font-size: px;
   }
   
   .icon-bar a:hover {
@@ -642,3 +642,9 @@ html {
     color: blue;
     text-shadow: 0 0 2px #ff0000, 0 0 2px #0000ff;
 }
+
+.fa{
+  size: 20rem;
+}
+
+

@@ -38,7 +38,7 @@ export default function SigninScreen(props) {
       </Helmet>
       <div className='row center'>
         <strong>
-          <h1> Signin to continue or <Link to={`/register?redirect=${redirect}`}>
+          <h1 style={{color: "red", fontSize: "2rem"}}> Signin to continue or <Link to={`/register?redirect=${redirect}`}>
             Register
            to begin</Link></h1>
         </strong>

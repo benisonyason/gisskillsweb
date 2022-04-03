@@ -35,6 +35,12 @@ import {
   SEARCH_LIST_SUCCESS,
   SEARCH_LIST_REQUEST,
   SEARCH_LIST_FAIL,
+  CONTACT_REQUEST,
+  CONTACT_SUCCESS,
+  CONTACT_FAIL,
+  CONTACT_LIST_REQUEST,
+  CONTACT_LIST_SUCCESS,
+  CONTACT_LIST_FAIL,
 } from '../constants/userConstants';
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -49,6 +55,33 @@ export const userRegisterReducer = (state = {}, action) => {
       return state;
   }
 };
+export const contactReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CONTACT_REQUEST:
+      return { loading: true };
+    case CONTACT_SUCCESS:
+      return { loading: false, userInfo: action.payload };
+    case CONTACT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const contactListReducer = (state = { loading: true }, action) => {
+  switch (action.type) {
+    case CONTACT_LIST_REQUEST:
+      return { loading: true };
+    case CONTACT_LIST_SUCCESS:
+      return { loading: false, contacts: action.payload };
+    case CONTACT_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+
 
 export const userSearchdataReducer = (state = {}, action) => {
   switch (action.type) {

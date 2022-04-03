@@ -30,6 +30,12 @@ import {
   SEARCH_LIST_FAIL,
   SEARCH_LIST_REQUEST,
   SEARCH_LIST_SUCCESS,
+  CONTACT_FAIL,
+  CONTACT_SUCCESS,
+  CONTACT_REQUEST,
+  CONTACT_LIST_REQUEST,
+  CONTACT_LIST_SUCCESS,
+  CONTACT_LIST_FAIL
 } from '../constants/userConstants';
 
 export const register = (name, email, password) => async (dispatch) => {
@@ -53,6 +59,51 @@ export const register = (name, email, password) => async (dispatch) => {
     });
   }
 };
+
+export const contact = (firstname, lastname, email, message) => async (dispatch) => {
+  dispatch({ type: CONTACT_REQUEST, payload: { firstname, lastname, email, message } });
+  try {
+    const { data } = await Axios.post('/api/contacts/contact', {
+      firstname,
+      lastname,
+      email,
+      message,
+    });
+    dispatch({ type: CONTACT_SUCCESS, payload: data });
+    alert("Message Sent Successfully")
+  } catch (error) {
+    dispatch({
+      type: CONTACT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listcontact = (firstname, lastname, email, message) => async (dispatch, getState) => {
+  dispatch({ type: CONTACT_LIST_REQUEST });
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    const { data } = await Axios.get('/api/contacts', {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({ type:CONTACT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: CONTACT_LIST_FAIL, payload: message });
+  }
+};
+
+
 
 export const searchdata = (name) => async (dispatch) => {
   dispatch({ type: SEARCH_REQUEST, payload: { name } });

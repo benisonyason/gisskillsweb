@@ -8,6 +8,7 @@ import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import searchRouter from './routers/searchRouter.js';
+import contactRouter from './routers/contactRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/searches', searchRouter);
+app.use('/api/contacts', contactRouter);
 app.use('/api/orders', orderRouter);
 app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
