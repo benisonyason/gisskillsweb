@@ -15,7 +15,7 @@ export default function ContactedScreen() {
   }, [dispatch]);
   return (
     <div>
-      <h2>Search List</h2>
+      <h2>Contact List</h2>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
