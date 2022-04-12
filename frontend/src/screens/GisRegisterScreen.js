@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { detailsUser, updateUserProfile } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 import { PaystackButton } from 'react-paystack';
+import { FlutterWaveButton } from 'flutterwave-react-v3';
+
 
 export default function ProfileScreen() {
   const [name, setName] = useState('');
@@ -35,14 +37,40 @@ export default function ProfileScreen() {
   }, [dispatch, userInfo._id, user]);
   const submitHandler = () => {
     // dispatch update profile
-      dispatch(
-        updateUserProfile({
-          userId: user._id,
-          name,
-          email,
-          isGIStudent,
-        })
-      );
+    dispatch(
+      updateUserProfile({
+        userId: user._id,
+        name,
+        email,
+        isGIStudent,
+      })
+    );
+  };
+
+  const config = {
+    public_key: 'FLWPUBK-b377287017f9aa54f634be015db036a0-X',
+    tx_ref: Date.now(),
+    amount: 20,
+    currency: 'USD',
+    payment_options: 'card, mobilemoney,ussd',
+    customer: {
+      email: userInfo.email,
+      phonenumber: '',
+      name: userInfo.name,
+    },
+    customizations: {
+      title: 'Niger Maps',
+      description: 'Payment for items in cart',
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: 'Pay in $',
+    callback: (response) => {
+      console.log(response);
+    },
+    onClose: () => { },
   };
   return (
     <div>
@@ -97,17 +125,21 @@ export default function ProfileScreen() {
 
             <div>
               <PaystackButton
-              className="primary block"
-              name={userInfo.name}
-              publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
-              email={userInfo.email}
-              text='Register'
-              amount={7000*100}
-              onSuccess={submitHandler}
-              />
+                className="primary block"
+                name={userInfo.name}
+                publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
+                email={userInfo.email}
+                text='Register'
+                amount={7000 * 100}
+                onSuccess={submitHandler}
+              /><hr />
+              <div className='row center'><strong>OR</strong></div>
+              <FlutterWaveButton
+                className="primary block"
+                {...fwConfig} />
             </div>
             <div>
-              <i><strong>Note:</strong> Full course is N7000 pay and start learning now</i>
+              <i><strong>Note:</strong> Payment of <del>&#8358;</del>7,000 or $20 before you start learning</i>
             </div>
           </>
         )}

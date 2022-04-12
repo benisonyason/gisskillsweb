@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { PaystackButton } from 'react-paystack';
+import { FlutterWaveButton } from 'flutterwave-react-v3';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -76,14 +77,38 @@ export default function OrderScreen(props) {
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
+  const config = {
+    public_key: 'FLWPUBK-b377287017f9aa54f634be015db036a0-X',
+    tx_ref: Date.now(),
+    amount: order.totalPrice / 420,
+    currency: 'USD',
+    payment_options: 'card, mobilemoney,ussd',
+    customer: {
+      email: userInfo.email,
+      phonenumber: '',
+      name: userInfo.name,
+    },
+    customizations: {
+      title: 'Niger Maps',
+      description: 'Payment for items in cart',
+    },
+  };
 
+  const fwConfig = {
+    ...config,
+    text: 'Pay in $',
+    callback: (response) => {
+      console.log(response);
+    },
+    onClose: () => { },
+  };
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
-      {!order.isPaid && order.totalPrice > 1 ?(
+      {!order.isPaid && order.totalPrice > 1 ? (
         <div>
           <strong>
             <h1>
@@ -234,13 +259,17 @@ export default function OrderScreen(props) {
                           <strong>Payment Method: </strong><p>Card, Bank Transfer, USSD, QR Code</p>
                         </div>
                         <PaystackButton
-                        className="primary block"
-                        name={userInfo.name}
-                        publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
-                        email={userInfo.email}
-                        text='Pay Now'
-                        amount={order.totalPrice * 100}
-                        onSuccess={successPaymentHandler}/>                      </>
+                          className="primary block"
+                          name={userInfo.name}
+                          publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
+                          email={userInfo.email}
+                          text='Pay in Naira'
+                          amount={order.totalPrice * 100}
+                          onSuccess={successPaymentHandler} /> <br />
+                        <FlutterWaveButton
+                          className="primary block"
+                          {...fwConfig} />
+                      </>
                     )}
                     {userInfo.isAdmin && !order.isDelivered && (
                       <li>

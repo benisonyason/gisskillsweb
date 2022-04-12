@@ -20,6 +20,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SigninScreen from './screens/SigninScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
+import GisTrainingScreen from './screens/GisTrainingScreen';
 import GiScreen from './screens/GisScreen';
 import LearnSpssScreen from './screens/LearnSpssScreen';
 import RlearnScreen from './screens/RlearnScreen';
@@ -82,7 +83,7 @@ function App() {
               )}
             </Link>
             <Link to="/contact">
-            <i className="fa fa-address-card" aria-hidden="true"></i>
+              <i className="fa fa-address-card" aria-hidden="true"></i>
             </Link>
             {userInfo ? (
               <div className="dropdown">
@@ -113,7 +114,11 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/gis">GIS </Link>
+                    <Link to="/gistraining"> Basic GIS </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/gis">Advance GIS </Link>
                   </li>
                   <li>
                     <Link to="/rlearn">R Studio</Link>
@@ -162,9 +167,9 @@ function App() {
             <Route path="/about" element={<AboutScreen />}></Route>
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/cart/:id" element={<CartScreen />}></Route>
-            <Route path="/contact" element={<ContactScreen/>}></Route>
-            <Route path="/gisregister" element={<PrivateRoute><GisRegisterScreen/></PrivateRoute>}></Route>
-            <Route path='/rregister' element={<PrivateRoute><RregisterScreen/></PrivateRoute>}></Route>
+            <Route path="/contact" element={<ContactScreen />}></Route>
+            <Route path="/gisregister" element={<PrivateRoute><GisRegisterScreen /></PrivateRoute>}></Route>
+            <Route path='/rregister' element={<PrivateRoute><RregisterScreen /></PrivateRoute>}></Route>
             <Route
               path="/product/:id"
               element={<ProductScreen />}
@@ -191,7 +196,8 @@ function App() {
             <Route path="/order/:id" element={<OrderScreen />}></Route>
             <Route path="/mymap" element={<MyMapScreen />}></Route>
             <Route path="/searchlist" element={<SearchListScreen />}></Route>
-            <Route path="/contacted" element={<ContactedScreen/>}></Route>
+            <Route path="/contacted" element={<ContactedScreen />}></Route>
+            <Route path="/gistraining" element={<GisTrainingScreen />}></Route>
             <Route
               path="/orderhistory"
               element={<OrderHistoryScreen />}
@@ -226,15 +232,15 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/gis" element={<GisLearnRoute><GiScreen/></GisLearnRoute>}></Route>
-            <Route 
-            path="/rlearn" 
-            element={
-              <RlearnRoute>
-                <RlearnScreen/>
-              </RlearnRoute>}
+            <Route path="/gis" element={<GisLearnRoute><GiScreen /></GisLearnRoute>}></Route>
+            <Route
+              path="/rlearn"
+              element={
+                <RlearnRoute>
+                  <RlearnScreen />
+                </RlearnRoute>}
             />
-            <Route path="/learnspss" element={<PrivateRoute><LearnSpssScreen/></PrivateRoute>}></Route>
+            <Route path="/learnspss" element={<PrivateRoute><LearnSpssScreen /></PrivateRoute>}></Route>
             <Route
               path="/map"
               element={

@@ -37,7 +37,7 @@ export default function LearnSpssScreen() {
             <div className='row center' style={{ 'fontSize': '25px', 'textAlign': 'center' }}>
                 <div><p>Thanks for showing interest to learn SPSS, Practical Lesson begin in &nbsp;</p></div> <br />
                 <strong><Countdown
-                    date='2022-04-10T01:02:03'
+                    date='2022-04-20T01:02:03'
                     renderer={renderer}
                 />
                 </strong>

@@ -50,7 +50,7 @@ export default function SearchScreen(props) {
     <div className="gallery">
       <Helmet>
         <title>Home</title>
-        <meta name="description" content="Search and Download Maps for Places" />
+        <meta name="description" content="Search and Download Maps for Places, Learn GIS Analysis and Statistics with R and SPSS Software. Request for location maps and Analysis" />
         <link rel="canonical" href="/" />
       </Helmet>
 
@@ -69,6 +69,9 @@ export default function SearchScreen(props) {
                  <Link to="/rlearn"><span>R Studio </span></Link> <br/>
                   <Link to="/learnspss"><span>SPSS</span></Link>
                 </div>
+              </div>
+              <div style={{textAlign:'center'}}>
+                <h1><strong><button><Link to='/gistraining'>Start Free Basic GIS Training</Link></button></strong></h1>
               </div>
               <div className='Row'>
                 <h1>Recent Map Updates </h1>

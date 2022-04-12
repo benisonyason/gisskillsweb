@@ -36,7 +36,7 @@ export default function ContactScreen(props) {
             </Helmet>
             <form className="form" onSubmit={submitHandler}>
                 <div>
-                    <h1>Contact Us</h1>
+                    <h1 style={{fontSize:'20px'}}>Contact Us</h1>
                 </div>
                 {loading && <LoadingBox></LoadingBox>}
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
@@ -89,7 +89,8 @@ export default function ContactScreen(props) {
                 </div>
                 <div>
                     <p><strong>Our Email:</strong> support@nigermaps.com</p>
-                    <p><strong>Our Phone:</strong> +2348075224314, +2348150495750</p>
+                    <p><strong>Our Phone:</strong> +2348075224314, +2347080051027</p>
+                    <p><strong>Adress:</strong> ADK Plaza Annex II, Ground Floor Shehu Shagari Way, Maitama P.M.B. 406 Garki Abuja-FCT, Nigeria;</p>
                 </div>
             </form>
         </div>

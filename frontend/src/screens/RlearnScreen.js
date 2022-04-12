@@ -8,7 +8,7 @@ export default function RlearnScreen() {
 
     const { userInfo } = userSignin;
 
-    const Completionist = () => <span>You are good to go!</span>;
+    const Completionist = () => <span>You are Registered!</span>;
 
     // Renderer callback with condition
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -30,7 +30,7 @@ export default function RlearnScreen() {
             <div className='row center' style={{ 'fontSize': '25px', 'textAlign': 'center' }}>
                 <div><p>Thanks for showing interest to learn R Studio Basics, Practical Lesson begin in &nbsp;</p></div> <br />
                 <strong><Countdown
-                    date='2022-04-15T01:02:03'
+                    date='2022-04-20T01:02:03'
                     renderer={renderer}
                 />
                 </strong>

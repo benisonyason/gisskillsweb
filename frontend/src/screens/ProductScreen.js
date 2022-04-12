@@ -70,7 +70,7 @@ export default function ProductScreen(props) {
                   alt={product.name}
                 ></img>
                 <div className="imagecenter">
-                  <strong>To Download Original better Jpeg format</strong>
+                  <strong>To Download this item</strong>
                   <ol>
                     <li>Add to download List</li>
                     <li>Signin/Sign up</li>
