@@ -66,7 +66,7 @@ export default function ProfileScreen() {
 
   const fwConfig = {
     ...config,
-    text: 'Pay in $',
+    text: 'International Payment',
     callback: (response) => {
       console.log(response);
     },
@@ -129,7 +129,7 @@ export default function ProfileScreen() {
                 name={userInfo.name}
                 publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
                 email={userInfo.email}
-                text='Register'
+                text='Pay with Nigerian Bank'
                 amount={7000 * 100}
                 onSuccess={submitHandler}
               /><hr />

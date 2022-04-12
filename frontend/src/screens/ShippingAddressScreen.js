@@ -95,8 +95,8 @@ export default function ShippingAddressScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="chooseOnMap">Location(Optional): <i>Select map to provide absolute location coordinates of study area</i></label>
-          <button type="button" onClick={chooseOnMap}>
+          <label htmlFor="chooseOnMap">Location(Optional): <i>Not available at the moment please continue</i></label>
+          <button type="button" onClick={chooseOnMap} disabled>
             Choose On Map
           </button>
         </div>

@@ -80,7 +80,7 @@ export default function OrderScreen(props) {
   const config = {
     public_key: 'FLWPUBK-b377287017f9aa54f634be015db036a0-X',
     tx_ref: Date.now(),
-    amount: order.totalPrice / 420,
+    
     currency: 'USD',
     payment_options: 'card, mobilemoney,ussd',
     customer: {
@@ -96,7 +96,7 @@ export default function OrderScreen(props) {
 
   const fwConfig = {
     ...config,
-    text: 'Pay in $',
+    text: 'International Payment',
     callback: (response) => {
       console.log(response);
     },
@@ -263,11 +263,12 @@ export default function OrderScreen(props) {
                           name={userInfo.name}
                           publicKey='pk_live_e28467f5fc5eb832ef869ab13391165f4cba6fac'
                           email={userInfo.email}
-                          text='Pay in Naira'
+                          text='Pay with Nigerian Bank'
                           amount={order.totalPrice * 100}
-                          onSuccess={successPaymentHandler} /> <br />
+                          onSuccess={successPaymentHandler} /> <hr />
                         <FlutterWaveButton
                           className="primary block"
+                          amount= {order.totalPrice/599}
                           {...fwConfig} />
                       </>
                     )}
