@@ -3,6 +3,7 @@ html {
     box-sizing: border-box;
   }
   body {
+    background-color: #c8e8c82d;
     margin: 0;
     height: 100vh;
     font-size: 1.8rem;
@@ -42,7 +43,7 @@ html {
     color: #ffffff;
   }
   
-  
+
   /* Common */
   h1 {
     font-size: 1.6rem;
@@ -91,6 +92,12 @@ html {
   }
   button.primary {
     background-color: #f0c040;
+  }
+  button.courses{
+    background-color: #dbd7cc;
+    font-size: large;
+    color: #000;
+    font-weight: bolder;
   }
   button.block {
     width: 100%;

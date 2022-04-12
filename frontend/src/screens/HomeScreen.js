@@ -6,6 +6,10 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Products2 from '../components/Products2';
 import { Helmet } from 'react-helmet-async';
+import { Carousel } from 'react-responsive-carousel';
+import SearchBox from '../components/SearchBox';
+
+
 
 
 export default function SearchScreen(props) {
@@ -62,16 +66,45 @@ export default function SearchScreen(props) {
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
             <>
-              <div className="headrow">
-                <div>
-                  <Link to="/mymap"><span>Search Map</span></Link><br/>
-                 <Link to="/gis"> <span>Learn GIS</span></Link><br/>
-                 <Link to="/rlearn"><span>R Studio </span></Link> <br/>
-                  <Link to="/learnspss"><span>SPSS</span></Link>
-                </div>
+              <div className='row center'>
+                <h2>Search Map store by LGA Name<i>(use LGA first word or State Name)</i></h2>
+                <SearchBox />
               </div>
-              <div style={{textAlign:'center'}}>
-                <h1><strong><button><Link to='/gistraining'>Start Free Basic GIS Training</Link></button></strong></h1>
+
+              <Carousel
+                showThumbs={false}
+                autoPlay={true}
+                interval={3000}
+                autoFocus={true}
+                infiniteLoop={true}
+              >
+                <div>
+                  <img src="images/advert2.jpg" alt='advert1' style={{ width: '200%' }} />
+                  <Link to='/gistraining' className='legend' style={{ fontSize: '15px', fontWeight: 'bold' }}>Start Free Basic GIS Training</Link>
+                </div>
+                <div>
+                  <img src="images/advert3.png" alt='advert2' />
+                  <Link to="/gis" className='legend' style={{ fontSize: '15px', fontWeight: 'bold' }}> <span>Advance GIS Training</span></Link><br />
+
+                </div>
+
+                <div>
+                  <img src="images/Rlogo.png" alt='Rlogo' />
+                  <Link to="/rlearn" className='legend' style={{ fontSize: '15px', fontWeight: 'bold' }}><span>Data Analysis with R Studio </span></Link> <br />
+
+                </div>
+                <div>
+                  <img src="images/spsslogo.png" alt='SPSS' />
+                  <Link to="/learnspss" className='legend' style={{ fontSize: '15px', fontWeight: 'bold' }}><span> Learn SPSS Statistics</span></Link>
+
+                </div>
+
+              </Carousel>
+              <div style={{ textAlign: 'center' }}>
+                <h1><strong><button className='courses'><Link to='/gistraining'>Start Free Basic GIS Training</Link></button></strong></h1>
+                <h1><strong><button className='courses'><Link to="/gis"> <span>Advance GIS</span></Link></button></strong></h1>
+                <h1><strong><button className='courses'><Link to="/rlearn"><span>Start Learning R Studio </span></Link> </button></strong></h1>
+                <h1><strong><button className='courses'><Link to="/learnspss"><span>Learn Statistics with SPSS</span></Link></button></strong></h1>
               </div>
               <div className='Row'>
                 <h1>Recent Map Updates </h1>
