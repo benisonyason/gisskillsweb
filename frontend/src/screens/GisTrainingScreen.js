@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 // import { Link } from 'react-router-dom';
-import ReactWhatsapp from 'react-whatsapp';
 import { Carousel } from 'react-responsive-carousel';
 
 
@@ -21,10 +20,7 @@ export default function GisTrainingScreen(props) {
             <h1 style={{ textShadow: '2px 2px 5px red', fontSize: '25px', textAlign: 'center' }}>Improve your GIS Skills with Free Basic Certificate</h1>
           </div>
           <div className='row center'>
-            <h1><strong style={{ fontSize: '40px' }}><button><a href='https://chat.whatsapp.com/JzgbMivilac6HrGeTRrLIt'>Join Batch 003</a></button></strong></h1>
-          </div>
-          <div className='row center'>
-            <ReactWhatsapp number="+2347035819528" message="Hello from gis training"><i className='fa fa-whatsapp'></i></ReactWhatsapp>
+            <h1><strong style={{ fontSize: '40px' }}><button><a href='https://chat.whatsapp.com/JzgbMiviIac6HrGeTRrLlt'>Join Batch 003</a></button></strong></h1>
           </div>
 
           <Carousel

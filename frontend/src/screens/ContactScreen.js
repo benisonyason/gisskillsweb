@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { contact } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import ReactWhatsapp from 'react-whatsapp';
+
 
 
 
@@ -92,6 +94,10 @@ export default function ContactScreen(props) {
                     <p><strong>Our Phone:</strong> +2348075224314, +2347080051027</p>
                     <p><strong>Adress:</strong> ADK Plaza Annex II, Ground Floor Shehu Shagari Way, Maitama P.M.B. 406 Garki Abuja-FCT, Nigeria;</p>
                 </div>
+                <div className='row center'>
+            <ReactWhatsapp number="+2347080051027" message="Hello from gis training"><i className='fa fa-whatsapp'>Chart with us</i></ReactWhatsapp>
+          </div>
+
             </form>
         </div>
 
