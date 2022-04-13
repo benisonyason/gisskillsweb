@@ -49,6 +49,7 @@ import RregisterScreen from './screens/RregisterScreen';
 import GisRegisterScreen from './screens/GisRegisterScreen';
 import GisLearnRoute from './components/GisLearnRoute';
 import ContactScreen from './screens/ContactScreen';
+import GisResourceScreen from './screens/GisResourceScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -168,6 +169,7 @@ function App() {
             <Route path="/cart" element={<CartScreen />}></Route>
             <Route path="/cart/:id" element={<CartScreen />}></Route>
             <Route path="/contact" element={<ContactScreen />}></Route>
+            <Route path="/gisresource" element={<GisResourceScreen/>}></Route>
             <Route path="/gisregister" element={<PrivateRoute><GisRegisterScreen /></PrivateRoute>}></Route>
             <Route path='/rregister' element={<PrivateRoute><RregisterScreen /></PrivateRoute>}></Route>
             <Route

@@ -101,6 +101,7 @@ export default function SearchScreen(props) {
 
               </Carousel>
               <div style={{ textAlign: 'center' }}>
+              <h1><strong><button className='courses'><Link to="/gisresource"><span>Download Tutorial Dataset</span></Link></button></strong></h1>
                 <h1><strong><button className='courses'><Link to='/gistraining'>Start Free Basic GIS Training</Link></button></strong></h1>
                 <h1><strong><button className='courses'><Link to="/gis"> <span>Advance GIS</span></Link></button></strong></h1>
                 <h1><strong><button className='courses'><Link to="/rlearn"><span>Start Learning R Studio </span></Link> </button></strong></h1>
