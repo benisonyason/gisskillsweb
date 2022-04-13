@@ -22,6 +22,9 @@ export default function GisTrainingScreen(props) {
           <div className='row center'>
             <h1><strong style={{ fontSize: '40px' }}><button className='courses'><a href='https://chat.whatsapp.com/CSOwtcmkB9K0NS95XsG3S3'>Join Batch 004</a></button></strong></h1>
           </div>
+          <div className='row center'>
+            <h2>Lessons Start 7pm(GMT +1) 14/04/2022</h2>
+          </div>
 
           <Carousel
             showThumbs={false}
